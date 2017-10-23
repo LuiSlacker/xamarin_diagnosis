@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Diagnostico.Diagnosis">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="onBtnClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="diagnosis">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                         <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnEdit" CommandParameter="{Binding .}"
+                               Text="Edit" />
+                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                               Text="Delete" IsDestructive="True" />
+                         </ViewCell.ContextActions>
+                         <StackLayout Padding="15, 10">
+                             <Label Text="{Binding Nombre}" />
+                         </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
