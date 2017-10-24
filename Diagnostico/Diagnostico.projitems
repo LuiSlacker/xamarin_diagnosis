@@ -26,5 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Diagnosis.xaml.cs">
       <DependentUpon>Diagnosis.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Paciente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SingleDiagnosis.cs" />
   </ItemGroup>
 </Project>

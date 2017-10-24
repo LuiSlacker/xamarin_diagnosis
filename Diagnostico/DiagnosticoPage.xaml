@@ -4,10 +4,10 @@
         <ToolbarItem Text="+" Clicked="onBtnClicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="pacientes" ItemSelected="onSelection">
+        <ListView x:Name="pacientes" ItemsSource="{Binding}" ItemSelected="onSelection" CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding FullNombre}" Detail="{Binding diagnosisCollection[0]}" />
+                    <TextCell Text="{Binding FullNombre}" Detail="{Binding LastDiagnosis}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

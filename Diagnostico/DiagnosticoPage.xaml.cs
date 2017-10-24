@@ -2,29 +2,26 @@
 using System.Collections.ObjectModel;
 using System;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Diagnostico
 {
-	public class SingleDiagnosis {
-		public string Nombre { get; set; }
-	}
-
-    public class Paciente {
-        public string FullNombre { get; set; }
-		public ObservableCollection<SingleDiagnosis> diagnosisCollection = new ObservableCollection<SingleDiagnosis>{};
-
-	}
-
-
-    public partial class DiagnosticoPage : ContentPage {
+    public partial class DiagnosticoPage : ContentPage, INotifyPropertyChanged {
         ObservableCollection<Paciente> pacientesCollection = new ObservableCollection<Paciente>{
             new Paciente{FullNombre="Luis Slacker"},
         };
 
         public DiagnosticoPage() {
             this.Title = "Pacientes";
+            BindingContext = pacientesCollection;
             InitializeComponent();
-            pacientes.ItemsSource = pacientesCollection;
+
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
 
@@ -39,12 +36,14 @@ namespace Diagnostico
 				return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
 			}
 
-			((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+			((ListView)sender).SelectedItem = null; // unselect item
 
-            var secondPage = new Diagnosis(((Paciente) e.SelectedItem));
+            var secondPage = new Diagnosis(e.SelectedItem as Paciente);
 			await Navigation.PushAsync(secondPage);
 
 		}
+
+		
 
 		
     }
